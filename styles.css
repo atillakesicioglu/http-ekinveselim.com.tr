@@ -1114,82 +1114,87 @@ body.intro-lock {
   font-weight: 600;
 }
 
-/* Responsive — mobil hero (referans: aslivetunahan.com) */
+/* Responsive — mobil hero */
 @media (max-width: 768px) {
   .atelier-blank-hero {
     display: grid;
     place-items: center;
-    align-content: center;
+    align-content: start;
     padding:
-      max(12px, env(safe-area-inset-top))
+      max(8px, env(safe-area-inset-top))
       0
-      max(16px, env(safe-area-inset-bottom));
+      max(12px, env(safe-area-inset-bottom));
     background-position: center center;
   }
 
   .atelier-blank-title {
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
     width: min(100%, 640px);
-    padding: 0 18px;
+    min-height: calc(100dvh - max(16px, env(safe-area-inset-top)) - max(12px, env(safe-area-inset-bottom)));
+    padding: 0 16px;
   }
 
   .atelier-blank-title-top {
-    width: min(92vw, 520px);
-    margin-bottom: clamp(18px, 5vw, 30px);
-    font-size: clamp(15px, 4.1vw, 22px);
-    font-style: italic;
-    line-height: 1.45;
-    color: rgba(90, 120, 124, 0.78);
+    width: min(96vw, 360px);
+    margin: 0 0 clamp(10px, 2.8vw, 16px);
+    font-family: var(--serif);
+    font-size: clamp(9px, 2.45vw, 11px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.35;
+    letter-spacing: 0.01em;
+    color: var(--ink);
   }
 
   .atelier-blank-title-top span {
-    white-space: normal;
+    white-space: nowrap;
   }
 
   .atelier-blank-title-core {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
     width: 100%;
     padding: 0;
+    min-height: clamp(300px, 58vh, 460px);
   }
 
   .atelier-amp-bg {
-    display: none;
+    display: block;
+    font-size: clamp(32px, 10vw, 56px);
+    opacity: 0.16;
   }
 
   .atelier-blank-title-amp {
-    display: inline;
-    position: relative;
-    z-index: 2;
-    font-family: var(--amsterdam);
-    font-size: clamp(22px, 6vw, 36px);
-    font-weight: 400;
-    line-height: 1;
-    color: var(--ink);
-    flex-shrink: 0;
-    transform: translateY(-0.06em);
+    display: none;
   }
 
   .atelier-couple-row {
     display: inline-flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
-    flex-wrap: nowrap;
-    gap: 0.28em;
-    min-width: auto;
+    gap: clamp(12px, 4.5vw, 24px);
+    min-width: min(92vw, 400px);
+    min-height: clamp(72px, 19vw, 104px);
     width: auto;
     max-width: 100%;
-    min-height: auto;
+    flex-shrink: 0;
   }
 
   .atelier-blank-title-main {
-    font-size: clamp(44px, 13vw, 64px);
+    font-size: clamp(42px, 12.5vw, 60px);
     white-space: nowrap;
   }
 
   .atelier-couple-accent {
-    width: min(92vw, 380px);
-    height: clamp(200px, 52vw, 280px);
-    margin-top: clamp(44px, 11vw, 68px);
-    opacity: 0.2;
+    width: min(98vw, 460px);
+    height: clamp(240px, 62vw, 340px);
+    margin-top: clamp(88px, 16vh, 130px);
+    opacity: 0.23;
   }
 
   .atelier-blank-title-family-group {
@@ -1198,7 +1203,8 @@ body.intro-lock {
     justify-content: center;
     align-items: center;
     gap: 0;
-    margin-top: clamp(14px, 3.5vw, 20px);
+    margin-top: auto;
+    padding-top: clamp(28px, 7vh, 52px);
     max-width: 96vw;
   }
 
@@ -1213,33 +1219,38 @@ body.intro-lock {
     content: "•";
     margin: 0 0.4em;
     font-family: var(--cormorant);
-    font-size: clamp(14px, 3.8vw, 18px);
+    font-size: clamp(14px, 3.6vw, 18px);
     color: var(--ink);
     line-height: 1.45;
   }
 
   .atelier-blank-title-family {
-    font-size: clamp(15px, 4vw, 20px);
+    font-size: clamp(14px, 3.7vw, 18px);
     line-height: 1.45;
     white-space: nowrap;
   }
 
   .atelier-blank-title-date {
-    font-size: clamp(17px, 4.5vw, 24px);
-    font-style: italic;
-    font-weight: 400;
-    margin-top: clamp(12px, 2.5vw, 16px);
+    font-size: clamp(15px, 4vw, 21px);
+    font-style: normal;
+    font-weight: 500;
+    margin-top: clamp(14px, 3.5vw, 20px);
   }
 
   .atelier-blank-title-time {
-    font-size: clamp(16px, 4vw, 22px);
-    margin-top: 4px;
+    font-size: clamp(14px, 3.8vw, 19px);
+    font-style: italic;
+    margin-top: 6px;
   }
 
   .atelier-blank-title-cta-btn {
-    margin-top: 14px;
+    margin-top: clamp(18px, 4.5vh, 28px);
     color: rgba(90, 120, 124, 0.72);
-    font-size: clamp(15px, 3.8vw, 19px);
+    font-size: clamp(14px, 3.6vw, 18px);
+  }
+
+  .atelier-blank-title-chevron {
+    margin-top: 6px;
   }
 
   .intro-tap-prompt {
