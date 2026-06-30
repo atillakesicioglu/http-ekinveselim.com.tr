@@ -1177,9 +1177,7 @@ body.intro-lock {
   }
 
   .atelier-amp-bg {
-    display: block;
-    font-size: clamp(32px, 10vw, 56px);
-    opacity: 0.16;
+    display: none;
   }
 
   .atelier-blank-title-amp {
