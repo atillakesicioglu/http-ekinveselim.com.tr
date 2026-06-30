@@ -338,6 +338,10 @@ body.intro-lock {
   z-index: 1;
 }
 
+.atelier-blank-title-amp {
+  display: none;
+}
+
 .atelier-blank-title-main {
   position: relative;
   z-index: 2;
@@ -758,7 +762,7 @@ body.intro-lock {
   --pill-height: 36px;
   grid-template-columns: repeat(var(--timeline-cols, 4), minmax(0, 1fr));
   gap: var(--dot-gap);
-  width: min(860px, 92vw);
+  width: min(1100px, 96vw);
   margin: clamp(32px, 5vw, 55px) auto 0;
   align-items: start;
   justify-items: center;
@@ -1110,17 +1114,150 @@ body.intro-lock {
   font-weight: 600;
 }
 
+/* Responsive — mobil hero (referans: aslivetunahan.com) */
+@media (max-width: 768px) {
+  .atelier-blank-hero {
+    display: grid;
+    place-items: center;
+    align-content: center;
+    padding:
+      max(12px, env(safe-area-inset-top))
+      0
+      max(16px, env(safe-area-inset-bottom));
+    background-position: center center;
+  }
+
+  .atelier-blank-title {
+    justify-content: center;
+    width: min(100%, 640px);
+    padding: 0 18px;
+  }
+
+  .atelier-blank-title-top {
+    width: min(92vw, 520px);
+    margin-bottom: clamp(18px, 5vw, 30px);
+    font-size: clamp(15px, 4.1vw, 22px);
+    font-style: italic;
+    line-height: 1.45;
+    color: rgba(90, 120, 124, 0.78);
+  }
+
+  .atelier-blank-title-top span {
+    white-space: normal;
+  }
+
+  .atelier-blank-title-core {
+    width: 100%;
+    padding: 0;
+  }
+
+  .atelier-amp-bg {
+    display: none;
+  }
+
+  .atelier-blank-title-amp {
+    display: inline;
+    position: relative;
+    z-index: 2;
+    font-family: var(--amsterdam);
+    font-size: clamp(22px, 6vw, 36px);
+    font-weight: 400;
+    line-height: 1;
+    color: var(--ink);
+    flex-shrink: 0;
+    transform: translateY(-0.06em);
+  }
+
+  .atelier-couple-row {
+    display: inline-flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 0.28em;
+    min-width: auto;
+    width: auto;
+    max-width: 100%;
+    min-height: auto;
+  }
+
+  .atelier-blank-title-main {
+    font-size: clamp(44px, 13vw, 64px);
+    white-space: nowrap;
+  }
+
+  .atelier-couple-accent {
+    width: min(92vw, 380px);
+    height: clamp(200px, 52vw, 280px);
+    margin-top: clamp(44px, 11vw, 68px);
+    opacity: 0.2;
+  }
+
+  .atelier-blank-title-family-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    margin-top: clamp(14px, 3.5vw, 20px);
+    max-width: 96vw;
+  }
+
+  .atelier-blank-title-family-col {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.28em;
+  }
+
+  .atelier-blank-title-family-col + .atelier-blank-title-family-col::before {
+    content: "•";
+    margin: 0 0.4em;
+    font-family: var(--cormorant);
+    font-size: clamp(14px, 3.8vw, 18px);
+    color: var(--ink);
+    line-height: 1.45;
+  }
+
+  .atelier-blank-title-family {
+    font-size: clamp(15px, 4vw, 20px);
+    line-height: 1.45;
+    white-space: nowrap;
+  }
+
+  .atelier-blank-title-date {
+    font-size: clamp(17px, 4.5vw, 24px);
+    font-style: italic;
+    font-weight: 400;
+    margin-top: clamp(12px, 2.5vw, 16px);
+  }
+
+  .atelier-blank-title-time {
+    font-size: clamp(16px, 4vw, 22px);
+    margin-top: 4px;
+  }
+
+  .atelier-blank-title-cta-btn {
+    margin-top: 14px;
+    color: rgba(90, 120, 124, 0.72);
+    font-size: clamp(15px, 3.8vw, 19px);
+  }
+
+  .intro-tap-prompt {
+    max-width: 100%;
+    padding-inline: 8px;
+    font-size: clamp(16px, 4.6vw, 24px);
+    line-height: 1.2;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+}
+
 /* Responsive — tablet */
-@media (max-width: 1024px) {
+@media (min-width: 769px) and (max-width: 1024px) {
   .intro-tap-prompt {
     white-space: normal;
     max-width: 22ch;
     line-height: 1.2;
-  }
-
-  .atelier-blank-title-top {
-    width: min(90vw, 380px);
-    margin-bottom: clamp(48px, 8vh, 68px);
   }
 
   .atelier-blank-title-top span {
@@ -1154,91 +1291,18 @@ body.intro-lock {
   }
 
   .atelier-floral-dot-item:nth-child(2)::after,
-  .atelier-floral-dot-item:nth-child(4)::after {
+  .atelier-floral-dot-item:nth-child(4)::after,
+  .atelier-floral-dot-item:nth-child(6)::after {
     display: none;
   }
 }
 
 @media (max-width: 640px) {
-  .intro-tap-prompt {
-    font-size: clamp(18px, 5.4vw, 24px);
-    max-width: 16ch;
-    padding: 0 8px;
-  }
-
   .atelier-music-toggle {
     right: max(12px, env(safe-area-inset-right));
     bottom: max(12px, env(safe-area-inset-bottom));
     width: 42px;
     height: 42px;
-  }
-
-  .atelier-blank-hero {
-    padding-top: clamp(18px, 4.5vh, 32px);
-    padding-bottom: 20px;
-    background-position: center top;
-  }
-
-  .atelier-blank-title {
-    padding: 0 14px;
-  }
-
-  .atelier-blank-title-top {
-    width: min(92vw, 320px);
-    margin-bottom: clamp(36px, 9vw, 52px);
-    font-size: clamp(9px, 2.9vw, 12px);
-    line-height: 1.4;
-  }
-
-  .atelier-blank-title-core {
-    width: 100%;
-    padding-inline: 6px;
-  }
-
-  .atelier-couple-row {
-    min-width: 100%;
-    gap: clamp(8px, 3.5vw, 18px);
-    min-height: clamp(58px, 16vw, 88px);
-  }
-
-  .atelier-blank-title-main {
-    white-space: nowrap;
-    font-size: clamp(34px, 10.5vw, 50px);
-  }
-
-  .atelier-amp-bg {
-    font-size: clamp(24px, 7.5vw, 36px);
-  }
-
-  .atelier-couple-accent {
-    width: min(100vw, 420px);
-    height: clamp(190px, 58vw, 300px);
-    margin-top: clamp(32px, 8vh, 56px);
-  }
-
-  .atelier-blank-title-family-group {
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 12px;
-  }
-
-  .atelier-blank-title-family {
-    font-size: clamp(14px, 3.8vw, 18px);
-    line-height: 1.35;
-  }
-
-  .atelier-blank-title-date {
-    font-size: clamp(13px, 3.6vw, 17px);
-  }
-
-  .atelier-blank-title-time {
-    font-size: clamp(14px, 3.8vw, 18px);
-  }
-
-  .atelier-blank-title-cta-btn {
-    margin-top: 12px;
-    padding: 12px 16px;
-    font-size: clamp(15px, 4vw, 19px);
   }
 
   .atelier-blank-countdown-grid {
@@ -1368,6 +1432,22 @@ body.intro-lock {
 
   .atelier-floral-dot-item::after {
     display: none;
+  }
+}
+
+@media (min-width: 901px) {
+  .atelier-floral-dot-pill {
+    min-width: 62px;
+    padding: 0 8px;
+    font-size: clamp(12px, 1.2vw, 16px);
+  }
+
+  .atelier-floral-dot-title {
+    font-size: clamp(11px, 1.2vw, 15px);
+  }
+
+  .atelier-floral-dot-desc {
+    font-size: clamp(11px, 1.1vw, 14px);
   }
 }
 
