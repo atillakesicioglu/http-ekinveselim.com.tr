@@ -983,7 +983,18 @@ body.intro-lock {
   line-height: 1.6;
   color: var(--ink);
   text-align: center;
-  padding-bottom: 4px;
+  padding-bottom: 0;
+}
+
+.atelier-rsvp-deadline {
+  margin: 0;
+  font-family: var(--cormorant);
+  font-size: clamp(14px, 2vw, 17px);
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--ink);
+  text-align: center;
+  padding-bottom: 8px;
   border-bottom: 1px solid rgba(90, 120, 124, 0.2);
 }
 
