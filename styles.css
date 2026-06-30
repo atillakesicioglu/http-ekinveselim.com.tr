@@ -309,7 +309,7 @@ body.intro-lock {
   gap: clamp(14px, 5vw, 36px);
   min-width: min(92vw, 420px);
   min-height: clamp(76px, 20vw, 128px);
-  margin: 0;
+  margin: clamp(20px, 4vw, 36px) 0 0;
   line-height: 1;
 }
 
@@ -377,6 +377,10 @@ body.intro-lock {
   flex-direction: column;
   align-items: center;
   min-width: 0;
+}
+
+.atelier-blank-title-family-surname {
+  margin-top: 2px;
 }
 
 .atelier-blank-title-family {
@@ -1204,7 +1208,7 @@ body.intro-lock {
     min-height: clamp(72px, 19vw, 104px);
     width: auto;
     max-width: 100%;
-    margin-top: clamp(2px, 0.8vw, 6px);
+    margin-top: clamp(14px, 3.5vw, 22px);
     position: relative;
     z-index: 2;
   }
@@ -1240,6 +1244,12 @@ body.intro-lock {
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.28em;
+  }
+
+  .atelier-blank-title-family-col--stack {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0;
   }
 
   .atelier-blank-title-family-col + .atelier-blank-title-family-col::before {
