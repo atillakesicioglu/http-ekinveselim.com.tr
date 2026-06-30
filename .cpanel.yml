@@ -1,0 +1,11 @@
+---
+# cPanel Git deployment — https://docs.cpanel.net/knowledge-base/web-services/guide-to-git-deployment/
+# Addon domain kullanıyorsanız DEPLOYPATH örn: /home/$USER/public_html/ekinveselim.com.tr/
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/$USER/public_html/
+    - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp styles.css $DEPLOYPATH
+    - /bin/cp script.js $DEPLOYPATH
+    - /bin/cp -R assets $DEPLOYPATH
+    - /bin/cp -R fotolar $DEPLOYPATH
