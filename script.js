@@ -205,31 +205,48 @@ function initIntro() {
   });
 
   if (backdropVideo) {
+    const backdropFrameSec = 0.8;
+
     backdropVideo.muted = true;
     backdropVideo.playsInline = true;
-    backdropVideo.loop = true;
+    backdropVideo.loop = false;
+    backdropVideo.autoplay = false;
     backdropVideo.setAttribute("webkit-playsinline", "");
+    backdropVideo.pause();
 
-    const startBackdropPreview = async () => {
-      try {
-        backdropVideo.currentTime = 0.8;
-        await backdropVideo.play();
-      } catch {
-        try {
-          backdropVideo.currentTime = 0;
-          await backdropVideo.play();
-        } catch {
-          backdropVideo.pause();
-        }
+    const freezeBackdropFrame = () => {
+      backdropVideo.pause();
+
+      if (backdropVideo.readyState < 1) {
+        return;
       }
+
+      try {
+        if (Math.abs(backdropVideo.currentTime - backdropFrameSec) > 0.05) {
+          backdropVideo.currentTime = backdropFrameSec;
+          return;
+        }
+      } catch {
+        // Metadata henüz hazır değilse bir sonraki olayda tekrar dene.
+      }
+
+      backdropVideo.pause();
     };
 
-    backdropVideo.addEventListener("loadeddata", () => {
-      startBackdropPreview();
-    }, { once: true });
+    backdropVideo.addEventListener("play", () => {
+      if (!started) {
+        backdropVideo.pause();
+      }
+    });
 
-    if (backdropVideo.readyState >= 2) {
-      startBackdropPreview();
+    backdropVideo.addEventListener("loadedmetadata", freezeBackdropFrame);
+    backdropVideo.addEventListener("loadeddata", freezeBackdropFrame);
+    backdropVideo.addEventListener("seeked", () => {
+      backdropVideo.pause();
+    });
+
+    if (backdropVideo.readyState >= 1) {
+      freezeBackdropFrame();
     } else {
       backdropVideo.load();
     }
@@ -299,31 +316,19 @@ function initIntro() {
     started = true;
     fadeStarted = false;
     video.classList.remove("is-fading-out");
-    overlay.classList.remove("is-fading-out", "is-video-visible");
-    overlay.classList.add("is-playing");
+    overlay.classList.remove("is-fading-out");
+    overlay.classList.add("is-playing", "is-video-visible");
     video.currentTime = 0;
 
     if (backdropVideo) {
       backdropVideo.pause();
     }
 
-    const revealVideo = () => {
-      if (!overlay.classList.contains("is-video-visible")) {
-        overlay.classList.add("is-video-visible");
-      }
-    };
-
-    video.addEventListener("playing", revealVideo, { once: true });
-
     try {
       await video.play();
     } catch {
       finishIntro();
       return;
-    }
-
-    if (video.readyState >= 2) {
-      revealVideo();
     }
 
     try {
