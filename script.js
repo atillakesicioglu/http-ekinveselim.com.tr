@@ -207,27 +207,31 @@ function initIntro() {
   if (backdropVideo) {
     backdropVideo.muted = true;
     backdropVideo.playsInline = true;
-    backdropVideo.pause();
+    backdropVideo.loop = true;
+    backdropVideo.setAttribute("webkit-playsinline", "");
 
-    const primeBackdropFrame = async () => {
-      const previewTime = 0.8;
-
+    const startBackdropPreview = async () => {
       try {
-        backdropVideo.currentTime = previewTime;
+        backdropVideo.currentTime = 0.8;
         await backdropVideo.play();
-        backdropVideo.pause();
-        backdropVideo.currentTime = previewTime;
       } catch {
-        backdropVideo.pause();
+        try {
+          backdropVideo.currentTime = 0;
+          await backdropVideo.play();
+        } catch {
+          backdropVideo.pause();
+        }
       }
     };
 
+    backdropVideo.addEventListener("loadeddata", () => {
+      startBackdropPreview();
+    }, { once: true });
+
     if (backdropVideo.readyState >= 2) {
-      primeBackdropFrame();
+      startBackdropPreview();
     } else {
-      backdropVideo.addEventListener("loadeddata", () => {
-        primeBackdropFrame();
-      }, { once: true });
+      backdropVideo.load();
     }
   }
 
@@ -298,6 +302,10 @@ function initIntro() {
     overlay.classList.remove("is-fading-out", "is-video-visible");
     overlay.classList.add("is-playing");
     video.currentTime = 0;
+
+    if (backdropVideo) {
+      backdropVideo.pause();
+    }
 
     const revealVideo = () => {
       if (!overlay.classList.contains("is-video-visible")) {

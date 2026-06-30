@@ -81,19 +81,28 @@ body.intro-lock {
 
 .intro-backdrop {
   position: absolute;
-  inset: -14%;
+  inset: 0;
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
+  background-color: #1a2a2c;
+  background-image: url("assets/navy-hero-custom.png");
+  background-size: cover;
+  background-position: center;
 }
 
 .intro-backdrop-video {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 120%;
+  height: 120%;
+  min-width: 100%;
+  min-height: 100%;
   object-fit: cover;
   object-position: center center;
-  filter: blur(16px) saturate(1.08);
-  transform: scale(1.1);
+  transform: translate(-50%, -50%) scale(1.08);
+  filter: blur(18px) saturate(1.1);
   pointer-events: none;
 }
 
@@ -1119,11 +1128,13 @@ body.intro-lock {
   .atelier-blank-hero {
     display: grid;
     place-items: center;
-    align-content: start;
+    align-content: center;
     padding:
-      max(8px, env(safe-area-inset-top))
+      max(10px, env(safe-area-inset-top))
       0
-      max(12px, env(safe-area-inset-bottom));
+      max(14px, env(safe-area-inset-bottom));
+    min-height: 100dvh;
+    min-height: 100svh;
     background-position: center center;
   }
 
@@ -1131,15 +1142,15 @@ body.intro-lock {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     width: min(100%, 640px);
-    min-height: calc(100dvh - max(16px, env(safe-area-inset-top)) - max(12px, env(safe-area-inset-bottom)));
     padding: 0 16px;
+    text-align: center;
   }
 
   .atelier-blank-title-top {
-    width: min(96vw, 360px);
-    margin: 0 0 clamp(10px, 2.8vw, 16px);
+    width: min(96vw, 340px);
+    margin: 0 0 clamp(12px, 3.2vw, 18px);
     font-family: var(--serif);
     font-size: clamp(9px, 2.45vw, 11px);
     font-style: normal;
@@ -1157,10 +1168,9 @@ body.intro-lock {
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1;
     width: 100%;
     padding: 0;
-    min-height: clamp(300px, 58vh, 460px);
+    position: relative;
   }
 
   .atelier-amp-bg {
@@ -1182,7 +1192,8 @@ body.intro-lock {
     min-height: clamp(72px, 19vw, 104px);
     width: auto;
     max-width: 100%;
-    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
   }
 
   .atelier-blank-title-main {
@@ -1191,20 +1202,23 @@ body.intro-lock {
   }
 
   .atelier-couple-accent {
-    width: min(98vw, 460px);
-    height: clamp(240px, 62vw, 340px);
-    margin-top: clamp(88px, 16vh, 130px);
+    top: 48%;
+    width: min(96vw, 440px);
+    height: clamp(230px, 60vw, 330px);
+    margin-top: 0;
+    transform: translate(-50%, -50%);
     opacity: 0.23;
   }
 
   .atelier-blank-title-family-group {
+    position: relative;
+    z-index: 2;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 0;
-    margin-top: auto;
-    padding-top: clamp(28px, 7vh, 52px);
+    margin-top: clamp(10px, 2.8vw, 16px);
     max-width: 96vw;
   }
 
@@ -1231,20 +1245,24 @@ body.intro-lock {
   }
 
   .atelier-blank-title-date {
+    position: relative;
+    z-index: 2;
     font-size: clamp(15px, 4vw, 21px);
     font-style: normal;
     font-weight: 500;
-    margin-top: clamp(14px, 3.5vw, 20px);
+    margin-top: clamp(10px, 2.5vw, 14px);
   }
 
   .atelier-blank-title-time {
+    position: relative;
+    z-index: 2;
     font-size: clamp(14px, 3.8vw, 19px);
     font-style: italic;
     margin-top: 6px;
   }
 
   .atelier-blank-title-cta-btn {
-    margin-top: clamp(18px, 4.5vh, 28px);
+    margin-top: clamp(12px, 3vw, 16px);
     color: rgba(90, 120, 124, 0.72);
     font-size: clamp(14px, 3.6vw, 18px);
   }
@@ -1253,13 +1271,54 @@ body.intro-lock {
     margin-top: 6px;
   }
 
+  .intro-overlay {
+    min-height: 100dvh;
+    min-height: 100svh;
+    min-height: -webkit-fill-available;
+  }
+
+  .intro-backdrop {
+    inset: 0;
+  }
+
+  .intro-backdrop-video {
+    width: 135%;
+    height: 135%;
+    filter: blur(20px) saturate(1.12);
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  .intro-overlay::after {
+    background: rgba(26, 42, 44, 0.26);
+  }
+
   .intro-tap-prompt {
     max-width: 100%;
-    padding-inline: 8px;
+    padding-inline: 12px;
     font-size: clamp(16px, 4.6vw, 24px);
     line-height: 1.2;
     font-weight: 500;
     letter-spacing: 0.03em;
+    text-shadow:
+      0 3px 22px rgba(0, 0, 0, 0.65),
+      0 2px 6px rgba(0, 0, 0, 0.5);
+  }
+
+  .intro-overlay.is-playing {
+    inset: 0;
+    padding: 0;
+    min-height: 100dvh;
+    min-height: 100svh;
+    min-height: -webkit-fill-available;
+  }
+
+  .intro-overlay.is-playing .intro-envelope-video {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: none;
   }
 }
 
