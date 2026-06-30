@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="only light" />
+    <title>Ekin &amp; Selim</title>
+    <meta
+      name="description"
+      content="Ekin ve Selim düğün davetiyesi — 13 Eylül Pazar, Lale Balo Salonu"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="assets/apple-touch-icon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="preload" href="assets/navy-hero-custom.png" as="image" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="intro-overlay" id="introOverlay">
+      <div class="intro-backdrop" aria-hidden="true">
+        <video
+          class="intro-backdrop-video"
+          id="introBackdropVideo"
+          playsinline
+          muted
+          preload="auto"
+          src="assets/wedding-intro.mp4"
+        ></video>
+      </div>
+      <p class="intro-tap-prompt">Davetiyeyi görüntülemek için dokunun</p>
+      <video
+        class="intro-envelope-video"
+        id="envelopeVideo"
+        playsinline
+        preload="auto"
+        src="assets/wedding-intro.mp4"
+      ></video>
+    </div>
+
+    <audio id="bgMusic" loop preload="auto" src="assets/wedding-song.mp3"></audio>
+
+    <button
+      class="atelier-music-toggle"
+      id="musicToggle"
+      type="button"
+      aria-label="Müziği kapat"
+      hidden
+    >
+      <svg class="atelier-music-toggle-icon atelier-music-toggle-icon--on" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" fill="currentColor" />
+      </svg>
+      <svg class="atelier-music-toggle-icon atelier-music-toggle-icon--off" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" fill="currentColor" />
+      </svg>
+    </button>
+
+    <div class="atelier-root">
+      <div
+        class="atelier-blank-hero"
+        id="hero"
+        style="background-image: url('assets/navy-hero-custom.png')"
+      >
+        <div class="atelier-blank-title">
+          <span class="atelier-blank-title-top">
+            <span>Bir ömür boyu mutluluğa evet dediğimiz bu özel günde</span>
+            <span>sizleri aramızda görmekten mutluluk duyarız.</span>
+          </span>
+          <div class="atelier-blank-title-core">
+            <img
+              class="atelier-couple-accent"
+              src="assets/couple-accent.png"
+              alt=""
+              aria-hidden="true"
+              decoding="async"
+            />
+            <span class="atelier-couple-row">
+              <span class="atelier-amp-bg" aria-hidden="true">&amp;</span>
+              <span class="atelier-blank-title-main atelier-blank-title-name">Ekin</span>
+              <span class="atelier-blank-title-main atelier-blank-title-name">Selim</span>
+            </span>
+            <div class="atelier-blank-title-family-group">
+              <span class="atelier-blank-title-family-col">
+                <span class="atelier-blank-title-family">Levent ve Naile</span>
+                <span class="atelier-blank-title-family">Örmeci</span>
+              </span>
+              <span class="atelier-blank-title-family-col">
+                <span class="atelier-blank-title-family">Mehmet ve Esra</span>
+                <span class="atelier-blank-title-family">Burak</span>
+              </span>
+            </div>
+            <span class="atelier-blank-title-date">13 Eylül Pazar</span>
+            <span class="atelier-blank-title-time">Saat 19:00</span>
+          </div>
+          <button type="button" class="atelier-blank-title-cta-btn" data-scroll-target="#rsvp">
+            Katılımını onayla
+          </button>
+          <span class="atelier-blank-title-chevron" aria-hidden="true">⌄</span>
+        </div>
+      </div>
+
+      <section class="atelier-floral-countdown" id="countdown">
+        <div class="atelier-blank-countdown">
+          <span class="atelier-blank-countdown-title">Geri sayım</span>
+          <span class="atelier-blank-countdown-subtitle">13 Eylül'e kadar</span>
+          <div class="atelier-blank-countdown-grid" id="countdownGrid">
+            <div class="atelier-blank-countdown-card">
+              <div class="atelier-blank-countdown-value" data-unit="days">--</div>
+              <div class="atelier-blank-countdown-label">gün</div>
+            </div>
+            <div class="atelier-blank-countdown-card">
+              <div class="atelier-blank-countdown-value" data-unit="hours">--</div>
+              <div class="atelier-blank-countdown-label">saat</div>
+            </div>
+            <div class="atelier-blank-countdown-card">
+              <div class="atelier-blank-countdown-value" data-unit="minutes">--</div>
+              <div class="atelier-blank-countdown-label">dakika</div>
+            </div>
+            <div class="atelier-blank-countdown-card">
+              <div class="atelier-blank-countdown-value" data-unit="seconds">--</div>
+              <div class="atelier-blank-countdown-label">saniye</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="atelier-countdown-divider-image" aria-hidden="true">
+        <img src="assets/navy-countdown-divider-custom.png" alt="" />
+      </div>
+
+      <section class="atelier-photos-section" id="photos">
+        <div class="atelier-story">
+          <h2>Anılarımız</h2>
+          <p>
+            Bu özel günümüzde yanımızda olmanız bizi çok mutlu edecek. Sevgiyle
+            davet ederiz.
+          </p>
+        </div>
+        <div class="atelier-photos-shell">
+          <div class="atelier-photos-track">
+            <div class="atelier-photo"><img src="fotolar/WhatsApp%20Image%202026-06-30%20at%2017.30.41.jpeg" alt="Fotoğraf 1" /></div>
+            <div class="atelier-photo"><img src="fotolar/WhatsApp%20Image%202026-06-30%20at%2017.30.42.jpeg" alt="Fotoğraf 2" /></div>
+            <div class="atelier-photo"><img src="fotolar/WhatsApp%20Image%202026-06-30%20at%2017.30.42%20(1).jpeg" alt="Fotoğraf 3" /></div>
+            <div class="atelier-photo"><img src="fotolar/WhatsApp%20Image%202026-06-30%20at%2017.30.42%20(2).jpeg" alt="Fotoğraf 4" /></div>
+            <div class="atelier-photo"><img src="fotolar/WhatsApp%20Image%202026-06-30%20at%2017.30.42%20(3).jpeg" alt="Fotoğraf 5" /></div>
+            <div class="atelier-photo"><img src="fotolar/WhatsApp%20Image%202026-06-30%20at%2017.30.43.jpeg" alt="Fotoğraf 6" /></div>
+            <div class="atelier-photo"><img src="fotolar/WhatsApp%20Image%202026-06-30%20at%2017.30.43%20(1).jpeg" alt="Fotoğraf 7" /></div>
+            <div class="atelier-photo"><img src="fotolar/WhatsApp%20Image%202026-06-30%20at%2017.30.43%20(2).jpeg" alt="Fotoğraf 8" /></div>
+            <div class="atelier-photo"><img src="fotolar/WhatsApp%20Image%202026-06-30%20at%2017.30.43%20(3).jpeg" alt="Fotoğraf 9" /></div>
+            <div class="atelier-photo"><img src="fotolar/WhatsApp%20Image%202026-06-30%20at%2017.30.43%20(4).jpeg" alt="Fotoğraf 10" /></div>
+            <div class="atelier-photo"><img src="fotolar/WhatsApp%20Image%202026-06-30%20at%2017.30.43%20(5).jpeg" alt="Fotoğraf 11" /></div>
+            <div class="atelier-photo"><img src="fotolar/WhatsApp%20Image%202026-06-30%20at%2017.30.41.jpeg" alt="Fotoğraf 1" /></div>
+            <div class="atelier-photo"><img src="fotolar/WhatsApp%20Image%202026-06-30%20at%2017.30.42.jpeg" alt="Fotoğraf 2" /></div>
+            <div class="atelier-photo"><img src="fotolar/WhatsApp%20Image%202026-06-30%20at%2017.30.42%20(1).jpeg" alt="Fotoğraf 3" /></div>
+            <div class="atelier-photo"><img src="fotolar/WhatsApp%20Image%202026-06-30%20at%2017.30.42%20(2).jpeg" alt="Fotoğraf 4" /></div>
+            <div class="atelier-photo"><img src="fotolar/WhatsApp%20Image%202026-06-30%20at%2017.30.42%20(3).jpeg" alt="Fotoğraf 5" /></div>
+            <div class="atelier-photo"><img src="fotolar/WhatsApp%20Image%202026-06-30%20at%2017.30.43.jpeg" alt="Fotoğraf 6" /></div>
+            <div class="atelier-photo"><img src="fotolar/WhatsApp%20Image%202026-06-30%20at%2017.30.43%20(1).jpeg" alt="Fotoğraf 7" /></div>
+            <div class="atelier-photo"><img src="fotolar/WhatsApp%20Image%202026-06-30%20at%2017.30.43%20(2).jpeg" alt="Fotoğraf 8" /></div>
+            <div class="atelier-photo"><img src="fotolar/WhatsApp%20Image%202026-06-30%20at%2017.30.43%20(3).jpeg" alt="Fotoğraf 9" /></div>
+            <div class="atelier-photo"><img src="fotolar/WhatsApp%20Image%202026-06-30%20at%2017.30.43%20(4).jpeg" alt="Fotoğraf 10" /></div>
+            <div class="atelier-photo"><img src="fotolar/WhatsApp%20Image%202026-06-30%20at%2017.30.43%20(5).jpeg" alt="Fotoğraf 11" /></div>
+          </div>
+        </div>
+        <div class="atelier-photos-divider" aria-hidden="true"></div>
+      </section>
+
+      <section class="atelier-floral-location atelier-blank-location no-location-image" id="location">
+        <div class="atelier-blank-location-head">
+          <span class="atelier-blank-location-icon" aria-hidden="true">
+            <img src="assets/location-icon.svg" alt="" />
+          </span>
+          <h2>Lokasyon</h2>
+          <p>Lale Balo Salonu</p>
+          <p class="atelier-blank-location-address">
+            Küçükçekmece Nikah Sarayı, Kartaltepe Mah. Hisar Sok. No:2, Küçükçekmece / İstanbul
+          </p>
+          <span class="atelier-blank-location-time">19:00</span>
+        </div>
+
+        <div class="atelier-blank-location-mapframe">
+          <iframe
+            src="https://www.google.com/maps?q=Lale%20Balo%20Salonu%20K%C3%BC%C3%A7%C3%BCk%C3%A7ekmece&output=embed"
+            title="Lale Balo Salonu Harita"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        </div>
+
+        <div class="atelier-floral-location-actions">
+          <a
+            class="atelier-blank-location-btn"
+            href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Ekin%20ve%20Selim%20D%C3%BC%C4%9F%C3%BCn&amp;dates=20260913T160000Z/20260913T200000Z&amp;details=D%C3%BC%C4%9F%C3%BCn%20davetiyesi&amp;location=Lale%20Balo%20Salonu%2C%20K%C3%BC%C3%A7%C3%BCk%C3%A7ekmece"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Takvime ekle</a>
+          <a
+            class="atelier-blank-location-btn atelier-ghost"
+            href="https://www.google.com/maps/dir/?api=1&amp;destination=Lale%20Balo%20Salonu%2C%20K%C3%BC%C3%A7%C3%BCk%C3%A7ekmece%20Nikah%20Saray%C4%B1"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Yol tarifi al</a>
+        </div>
+      </section>
+
+      <div class="atelier-floral-timeline-block" id="timeline">
+        <h2 class="atelier-floral-section-title">Düğün Akışı</h2>
+        <div class="atelier-floral-dots" style="--timeline-cols: 5">
+          <div class="atelier-floral-dot-item">
+            <span class="atelier-floral-dot-pill">19:00</span>
+            <span class="atelier-floral-dot has-icon" aria-hidden="true">
+              <img src="assets/floral-timeline-welcome.svg" alt="" />
+            </span>
+            <div class="atelier-floral-dot-text">
+              <span class="atelier-floral-dot-title">Etkinlik Başlangıcı</span>
+              <span class="atelier-floral-dot-desc">Misafirlerin karşılanması.</span>
+            </div>
+          </div>
+          <div class="atelier-floral-dot-item">
+            <span class="atelier-floral-dot-pill">19:30</span>
+            <span class="atelier-floral-dot has-icon" aria-hidden="true">
+              <img src="assets/floral-timeline-nikah.svg" alt="" />
+            </span>
+            <div class="atelier-floral-dot-text">
+              <span class="atelier-floral-dot-title">Nikah</span>
+              <span class="atelier-floral-dot-desc">Nikah kıyılma zamanı.</span>
+            </div>
+          </div>
+          <div class="atelier-floral-dot-item">
+            <span class="atelier-floral-dot-pill">20:30</span>
+            <span class="atelier-floral-dot has-icon" aria-hidden="true">
+              <img src="assets/floral-timeline-dinner.svg" alt="" />
+            </span>
+            <div class="atelier-floral-dot-text">
+              <span class="atelier-floral-dot-title">Yemek</span>
+              <span class="atelier-floral-dot-desc">Akşam yemeği servisi.</span>
+            </div>
+          </div>
+          <div class="atelier-floral-dot-item">
+            <span class="atelier-floral-dot-pill">21:30</span>
+            <span class="atelier-floral-dot has-icon" aria-hidden="true">
+              <img src="assets/floral-timeline-dance.svg" alt="" />
+            </span>
+            <div class="atelier-floral-dot-text">
+              <span class="atelier-floral-dot-title">Kutlama</span>
+              <span class="atelier-floral-dot-desc">Kutlama ve eğlence.</span>
+            </div>
+          </div>
+          <div class="atelier-floral-dot-item">
+            <span class="atelier-floral-dot-pill">23:00</span>
+            <span class="atelier-floral-dot has-icon" aria-hidden="true">
+              <img src="assets/floral-timeline-closing.svg" alt="" />
+            </span>
+            <div class="atelier-floral-dot-text">
+              <span class="atelier-floral-dot-title">Düğün Sonu</span>
+              <span class="atelier-floral-dot-desc">Gecenin kapanışı.</span>
+            </div>
+          </div>
+        </div>
+        <div class="atelier-navy-timeline-footer" aria-hidden="true">
+          <img src="assets/navy-timeline-footer-custom.png" alt="" />
+        </div>
+      </div>
+
+      <section class="atelier-menu-section" id="menu">
+        <div class="atelier-menu">
+          <h3>Menü</h3>
+          <p>Ordövr Tabağı</p>
+          <p>Et Menüsü</p>
+          <p>Pasta</p>
+          <p>Sınırsız İçecek</p>
+        </div>
+      </section>
+
+      <div class="atelier-rsvp" id="rsvp">
+        <div class="atelier-rsvp-form-wrap">
+          <form class="atelier-rsvp-form" id="rsvpForm" novalidate>
+            <p class="atelier-rsvp-note">
+              Davetiye iki kişiliktir. Çocuklara iyi uykular diliyoruz.
+            </p>
+            <label>
+              Ad Soyad *
+              <input type="text" name="name" placeholder="Adınız Soyadınız" autocomplete="name" required />
+            </label>
+            <fieldset class="atelier-rsvp-fieldset">
+              <legend>Katılım *</legend>
+              <label class="atelier-rsvp-radio">
+                <input type="radio" name="attendance" value="yes" required checked />
+                Evet, katılacağım
+              </label>
+              <label class="atelier-rsvp-radio">
+                <input type="radio" name="attendance" value="no" />
+                Katılamayacağım
+              </label>
+            </fieldset>
+            <fieldset class="atelier-rsvp-fieldset">
+              <legend>Davetli sayısı (siz dahil) *</legend>
+              <label class="atelier-rsvp-radio">
+                <input type="radio" name="guests" value="1" required checked />
+                1 kişi
+              </label>
+              <label class="atelier-rsvp-radio">
+                <input type="radio" name="guests" value="2" />
+                2 kişi
+              </label>
+            </fieldset>
+            <label>
+              Mesaj
+              <textarea name="message" rows="3" placeholder="Mesajınızı yazın"></textarea>
+            </label>
+            <button type="submit">Gönder</button>
+          </form>
+        </div>
+      </div>
+
+      <footer class="atelier-footer">
+        <div class="atelier-footer-line" aria-hidden="true"></div>
+        <p class="atelier-footer-names">
+          <span>Ekin</span>
+          <span class="atelier-footer-amp" aria-hidden="true">&amp;</span>
+          <span>Selim</span>
+        </p>
+        <p class="atelier-footer-date">13 EYLÜL 2026</p>
+        <span class="atelier-footer-heart" aria-hidden="true">♡</span>
+        <p class="atelier-footer-made">Made with <strong>love</strong></p>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
