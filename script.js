@@ -149,18 +149,184 @@ function initPhotosMarquee() {
   });
 }
 
+function setFormFeedback(element, message, type) {
+  if (!element) return;
+
+  if (!message) {
+    element.hidden = true;
+    element.textContent = "";
+    element.classList.remove("is-success", "is-error");
+    return;
+  }
+
+  element.hidden = false;
+  element.textContent = message;
+  element.classList.remove("is-success", "is-error");
+  if (type) element.classList.add(`is-${type}`);
+}
+
+function showFormSuccess({ form, success, successText, message, panel }) {
+  if (form) form.hidden = true;
+  if (success) success.hidden = false;
+  if (successText) successText.textContent = message;
+  if (panel) {
+    panel.classList.add("is-success");
+    panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+}
+
 function initRsvpForm() {
   const form = document.getElementById("rsvpForm");
+  const feedback = document.getElementById("rsvpFeedback");
+  const panel = document.getElementById("rsvpPanel");
+  const success = document.getElementById("rsvpSuccess");
+  const successText = document.getElementById("rsvpSuccessText");
   if (!form) return;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const submitButton = form.querySelector('button[type="submit"]');
+    const formData = new FormData(form);
+    const attendance = String(formData.get("attendance") || "");
+
+    if (submitButton) submitButton.disabled = true;
+    setFormFeedback(feedback, "", "");
+
+    const payload = {
+      name: String(formData.get("name") || "").trim(),
+      attendance,
+      guests: Number(formData.get("guests") || 1),
+      message: String(formData.get("message") || "").trim(),
+    };
+
+    try {
+      const response = await fetch("api/rsvp.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.message || "Gönderim başarısız oldu.");
+      }
+
+      const thankYouMessage =
+        attendance === "yes"
+          ? "Katılım yanıtınızı aldık. Bu özel günümüzde yanımızda olmanız bizi çok mutlu edecek."
+          : "Yanıtınız için teşekkür ederiz. Sizi başka bir vesileyle görmeyi çok isteriz.";
+
+      showFormSuccess({
+        form,
+        success,
+        successText,
+        message: thankYouMessage,
+        panel,
+      });
+    } catch (error) {
+      setFormFeedback(feedback, error.message || "Bir hata oluştu. Lütfen tekrar deneyin.", "error");
+      if (submitButton) submitButton.disabled = false;
+    }
+  });
+}
+
+function initMemoriesForm() {
+  const form = document.getElementById("memoriesForm");
+  const fileInput = document.getElementById("memoriesFiles");
+  const fileList = document.getElementById("memoriesFileList");
+  const feedback = document.getElementById("memoriesFeedback");
+  const progress = document.getElementById("memoriesProgress");
+  const progressBar = document.getElementById("memoriesProgressBar");
+  const submitButton = document.getElementById("memoriesSubmitBtn");
+  const panel = document.getElementById("memoriesPanel");
+  const success = document.getElementById("memoriesSuccess");
+  const successText = document.getElementById("memoriesSuccessText");
+
+  if (!form || !fileInput) return;
+
+  fileInput.addEventListener("change", () => {
+    const files = [...fileInput.files];
+    if (!fileList) return;
+
+    if (files.length === 0) {
+      fileList.hidden = true;
+      fileList.textContent = "";
+      return;
+    }
+
+    fileList.hidden = false;
+    fileList.textContent = `${files.length} dosya seçildi`;
+  });
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    alert("Teşekkürler! Katılım bildiriminiz alındı.");
-    form.reset();
-    const yesRadio = form.querySelector('input[name="attendance"][value="yes"]');
-    const oneGuest = form.querySelector('input[name="guests"][value="1"]');
-    if (yesRadio) yesRadio.checked = true;
-    if (oneGuest) oneGuest.checked = true;
+
+    const formData = new FormData(form);
+    const files = fileInput.files;
+
+    if (!files || files.length === 0) {
+      setFormFeedback(feedback, "En az bir fotoğraf veya video seçin.", "error");
+      return;
+    }
+
+    for (const file of files) {
+      if (!file.type.startsWith("image/") && !file.type.startsWith("video/")) {
+        setFormFeedback(feedback, "Sadece fotoğraf ve video yükleyebilirsiniz.", "error");
+        return;
+      }
+    }
+
+    if (submitButton) submitButton.disabled = true;
+    setFormFeedback(feedback, "", "");
+    if (progress) progress.hidden = false;
+    if (progressBar) progressBar.style.width = "0%";
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "api/memories.php");
+
+    xhr.upload.addEventListener("progress", (uploadEvent) => {
+      if (!progressBar || !uploadEvent.lengthComputable) return;
+      const percent = Math.round((uploadEvent.loaded / uploadEvent.total) * 100);
+      progressBar.style.width = `${percent}%`;
+    });
+
+    xhr.addEventListener("load", () => {
+      let result = { ok: false, message: "Yükleme başarısız oldu." };
+
+      try {
+        result = JSON.parse(xhr.responseText);
+      } catch {
+        // JSON parse hatası
+      }
+
+      if (xhr.status >= 200 && xhr.status < 300 && result.ok) {
+        showFormSuccess({
+          form,
+          success,
+          successText,
+          message:
+            "Anılarınızı bizimle paylaştığınız için çok teşekkür ederiz. Her kare bizim için çok değerli.",
+          panel,
+        });
+      } else {
+        setFormFeedback(feedback, result.message || "Yükleme başarısız oldu.", "error");
+      }
+
+      if (submitButton) submitButton.disabled = false;
+      if (progress) progress.hidden = true;
+      if (progressBar) progressBar.style.width = "0%";
+    });
+
+    xhr.addEventListener("error", () => {
+      setFormFeedback(feedback, "Bağlantı hatası oluştu. Lütfen tekrar deneyin.", "error");
+      if (submitButton) submitButton.disabled = false;
+      if (progress) progress.hidden = true;
+      if (progressBar) progressBar.style.width = "0%";
+    });
+
+    xhr.send(formData);
   });
 }
 
@@ -387,6 +553,7 @@ function initPage() {
   initIntro();
   initPhotosMarquee();
   initRsvpForm();
+  initMemoriesForm();
   initScrollCta();
 }
 

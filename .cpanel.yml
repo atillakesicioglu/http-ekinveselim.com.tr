@@ -7,5 +7,17 @@ deployment:
     - /bin/cp index.html $DEPLOYPATH
     - /bin/cp styles.css $DEPLOYPATH
     - /bin/cp script.js $DEPLOYPATH
+    - /bin/cp install.sql $DEPLOYPATH
     - /bin/cp -R assets $DEPLOYPATH
     - /bin/cp -R fotolar $DEPLOYPATH
+    - /bin/mkdir -p $DEPLOYPATH/api
+    - /bin/cp api/bootstrap.php $DEPLOYPATH/api/
+    - /bin/cp api/rsvp.php $DEPLOYPATH/api/
+    - /bin/cp api/memories.php $DEPLOYPATH/api/
+    - /bin/cp api/.htaccess $DEPLOYPATH/api/
+    - /bin/cp api/config.example.php $DEPLOYPATH/api/
+    - /bin/cp api/config.php $DEPLOYPATH/api/
+    - /bin/mkdir -p $DEPLOYPATH/admin
+    - /bin/cp -R admin/* $DEPLOYPATH/admin/
+    - /bin/mkdir -p $DEPLOYPATH/uploads/memories
+    - /bin/cp uploads/memories/.htaccess $DEPLOYPATH/uploads/memories/

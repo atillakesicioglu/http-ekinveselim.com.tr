@@ -301,7 +301,7 @@
       </section>
 
       <div class="atelier-rsvp" id="rsvp">
-        <div class="atelier-rsvp-form-wrap">
+        <div class="atelier-form-panel" id="rsvpPanel">
           <form class="atelier-rsvp-form" id="rsvpForm" novalidate>
             <p class="atelier-rsvp-note">
               Davetiye iki kişiliktir. Çocuklara iyi uykular diliyoruz.
@@ -341,7 +341,69 @@
             </label>
             <button type="submit">Gönder</button>
           </form>
+
+          <div class="atelier-form-success" id="rsvpSuccess" hidden>
+            <div class="atelier-form-success-card">
+              <span class="atelier-form-success-icon" aria-hidden="true">♡</span>
+              <h4>Teşekkürler</h4>
+              <p class="atelier-form-success-text" id="rsvpSuccessText"></p>
+            </div>
+          </div>
+
+          <p class="atelier-form-feedback" id="rsvpFeedback" hidden aria-live="polite"></p>
         </div>
+
+        <section class="atelier-memories-block" id="memories">
+          <h3>Anılarınızı bizimle paylaşın</h3>
+          <p class="atelier-memories-intro">
+            Düğünümüzde çektiğiniz güzel anıları bizimle paylaştığınız için teşekkür ederiz.
+            Fotoğraf ve videolarınızı buradan yükleyebilirsiniz.
+          </p>
+
+          <div class="atelier-form-panel" id="memoriesPanel">
+            <form class="atelier-rsvp-form atelier-memories-form" id="memoriesForm" novalidate>
+              <label>
+                Ad Soyad *
+                <input type="text" name="name" placeholder="Adınız Soyadınız" autocomplete="name" required />
+              </label>
+
+              <label>
+                Not (opsiyonel)
+                <textarea name="note" rows="3" placeholder="İsterseniz kısa bir not ekleyebilirsiniz"></textarea>
+              </label>
+
+              <label class="atelier-memories-file-label">
+                Fotoğraf ve videolar *
+                <input
+                  type="file"
+                  name="files[]"
+                  id="memoriesFiles"
+                  accept="image/*,video/*"
+                  multiple
+                  required
+                />
+                <span class="atelier-memories-file-hint">Birden fazla dosya seçebilirsiniz. Sadece fotoğraf ve video.</span>
+                <span class="atelier-memories-file-list" id="memoriesFileList" hidden></span>
+              </label>
+
+              <div class="atelier-memories-progress" id="memoriesProgress" hidden>
+                <div class="atelier-memories-progress-bar" id="memoriesProgressBar"></div>
+              </div>
+
+              <button type="submit" id="memoriesSubmitBtn">Yükle</button>
+            </form>
+
+            <div class="atelier-form-success" id="memoriesSuccess" hidden>
+              <div class="atelier-form-success-card">
+                <span class="atelier-form-success-icon" aria-hidden="true">♡</span>
+                <h4>Teşekkürler</h4>
+                <p class="atelier-form-success-text" id="memoriesSuccessText"></p>
+              </div>
+            </div>
+
+            <p class="atelier-form-feedback" id="memoriesFeedback" hidden aria-live="polite"></p>
+          </div>
+        </section>
       </div>
 
       <footer class="atelier-footer">

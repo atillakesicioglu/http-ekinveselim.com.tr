@@ -965,7 +965,8 @@ body.intro-lock {
   background: var(--cream);
 }
 
-.atelier-rsvp-form-wrap {
+.atelier-rsvp-form-wrap,
+.atelier-form-panel {
   width: min(520px, 92vw);
   margin: 0 auto;
 }
@@ -1082,6 +1083,146 @@ body.intro-lock {
 
 .atelier-rsvp-form button:hover {
   opacity: 0.9;
+}
+
+.atelier-rsvp-form button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.atelier-form-success-card {
+  border: 1px solid var(--navy);
+  padding: clamp(32px, 7vw, 48px) clamp(22px, 5vw, 36px);
+  text-align: center;
+  background: rgba(247, 242, 234, 0.5);
+  animation: atelier-form-success-in 0.55s ease;
+}
+
+.atelier-form-success-icon {
+  display: block;
+  margin: 0 auto 14px;
+  font-size: clamp(30px, 7vw, 40px);
+  line-height: 1;
+  color: var(--ink);
+}
+
+.atelier-form-success-card h4 {
+  margin: 0 0 12px;
+  font-family: var(--playfair);
+  font-size: clamp(26px, 5vw, 34px);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.atelier-form-success-text {
+  margin: 0;
+  font-family: var(--cormorant);
+  font-size: clamp(17px, 2.4vw, 21px);
+  font-style: italic;
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+@keyframes atelier-form-success-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.atelier-form-feedback {
+  margin: 12px 0 0;
+  font-family: var(--cormorant);
+  font-size: clamp(15px, 2vw, 18px);
+  font-style: italic;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.atelier-form-feedback.is-success {
+  color: var(--ink);
+}
+
+.atelier-form-feedback.is-error {
+  color: #9b4b4b;
+}
+
+.atelier-memories-block {
+  margin-top: clamp(40px, 8vw, 64px);
+  width: min(520px, 92vw);
+  margin-inline: auto;
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+}
+
+.atelier-memories-block h3 {
+  margin: 0;
+  font-family: var(--playfair);
+  font-size: clamp(24px, 4.5vw, 30px);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.atelier-memories-intro {
+  margin: 0;
+  max-width: 46ch;
+  font-family: var(--cormorant);
+  font-size: clamp(16px, 2.2vw, 20px);
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.atelier-memories-form {
+  width: 100%;
+}
+
+.atelier-memories-block .atelier-form-panel {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.atelier-memories-file-label input[type="file"] {
+  width: 100%;
+  padding: 10px 0;
+  font-family: var(--cormorant);
+  font-size: clamp(14px, 1.9vw, 17px);
+  font-style: italic;
+  color: var(--ink);
+}
+
+.atelier-memories-file-hint {
+  font-size: clamp(14px, 1.9vw, 16px);
+  color: rgba(90, 120, 124, 0.75);
+  font-style: italic;
+}
+
+.atelier-memories-file-list {
+  font-size: clamp(14px, 1.9vw, 16px);
+  font-style: italic;
+  color: var(--ink);
+}
+
+.atelier-memories-progress {
+  height: 6px;
+  background: rgba(90, 120, 124, 0.15);
+  overflow: hidden;
+}
+
+.atelier-memories-progress-bar {
+  height: 100%;
+  width: 0;
+  background: var(--ink);
+  transition: width 0.2s ease;
 }
 
 /* Footer */
