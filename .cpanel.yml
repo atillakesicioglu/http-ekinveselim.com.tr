@@ -16,7 +16,6 @@ deployment:
     - /bin/cp api/memories.php $DEPLOYPATH/api/
     - /bin/cp api/.htaccess $DEPLOYPATH/api/
     - /bin/cp api/config.example.php $DEPLOYPATH/api/
-    - /bin/cp api/config.php $DEPLOYPATH/api/
     - /bin/mkdir -p $DEPLOYPATH/admin
     - /bin/cp -R admin/* $DEPLOYPATH/admin/
     - /bin/mkdir -p $DEPLOYPATH/uploads/memories

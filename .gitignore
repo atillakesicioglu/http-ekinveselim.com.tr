@@ -2,3 +2,4 @@
 Thumbs.db
 .cursor/
 *.log
+api/config.php
